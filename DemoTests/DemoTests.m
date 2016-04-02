@@ -7,8 +7,17 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WritingTestsViewController.h"
+
 
 @interface DemoTests : XCTestCase
+
+@property(nonatomic) WritingTestsViewController *write;
+
+@end
+
+@interface WritingTestsViewController (Test)
+
 
 @end
 
@@ -16,6 +25,8 @@
 
 - (void)setUp {
     [super setUp];
+    
+    self.write = [[WritingTestsViewController alloc] init];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

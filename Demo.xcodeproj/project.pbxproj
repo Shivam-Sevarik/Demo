@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B55F6E01CAA778B009F4ADE /* WritingTestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */; };
+		3B65C3D51CAE539400ADEA67 /* ExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */; };
+		3B65C3D81CAE544200ADEA67 /* ExpandableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3D71CAE544200ADEA67 /* ExpandableCell.m */; };
+		3B65C3DB1CAE54A900ADEA67 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3DA1CAE54A900ADEA67 /* Constants.m */; };
+		3B65C3DD1CAE631400ADEA67 /* ExpandableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B65C3DC1CAE631400ADEA67 /* ExpandableCell.xib */; };
 		3B863EB21C9AE32800EB439B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B863EB11C9AE32800EB439B /* main.m */; };
 		3B863EB51C9AE32800EB439B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B863EB41C9AE32800EB439B /* AppDelegate.m */; };
 		3B863EB81C9AE32800EB439B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B863EB71C9AE32800EB439B /* ViewController.m */; };
@@ -35,6 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B55F6DE1CAA778B009F4ADE /* WritingTestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WritingTestsViewController.h; path = ../WritingTestsViewController.h; sourceTree = "<group>"; };
+		3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WritingTestsViewController.m; path = ../WritingTestsViewController.m; sourceTree = "<group>"; };
+		3B65C3D31CAE539400ADEA67 /* ExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpandableTableView.h; path = ../ExpandableTableView.h; sourceTree = "<group>"; };
+		3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpandableTableView.m; path = ../ExpandableTableView.m; sourceTree = "<group>"; };
+		3B65C3D61CAE544200ADEA67 /* ExpandableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpandableCell.h; path = ../ExpandableCell.h; sourceTree = "<group>"; };
+		3B65C3D71CAE544200ADEA67 /* ExpandableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpandableCell.m; path = ../ExpandableCell.m; sourceTree = "<group>"; };
+		3B65C3D91CAE54A900ADEA67 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
+		3B65C3DA1CAE54A900ADEA67 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = ../Constants.m; sourceTree = "<group>"; };
+		3B65C3DC1CAE631400ADEA67 /* ExpandableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExpandableCell.xib; path = ../ExpandableCell.xib; sourceTree = "<group>"; };
 		3B863EAD1C9AE32800EB439B /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B863EB11C9AE32800EB439B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B863EB31C9AE32800EB439B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +119,15 @@
 				3B863EB41C9AE32800EB439B /* AppDelegate.m */,
 				3B863EB61C9AE32800EB439B /* ViewController.h */,
 				3B863EB71C9AE32800EB439B /* ViewController.m */,
+				3B55F6DE1CAA778B009F4ADE /* WritingTestsViewController.h */,
+				3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */,
+				3B65C3D31CAE539400ADEA67 /* ExpandableTableView.h */,
+				3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */,
+				3B65C3D61CAE544200ADEA67 /* ExpandableCell.h */,
+				3B65C3D71CAE544200ADEA67 /* ExpandableCell.m */,
+				3B65C3DC1CAE631400ADEA67 /* ExpandableCell.xib */,
+				3B65C3D91CAE54A900ADEA67 /* Constants.h */,
+				3B65C3DA1CAE54A900ADEA67 /* Constants.m */,
 				3B863EB91C9AE32800EB439B /* Main.storyboard */,
 				3B863EBC1C9AE32900EB439B /* Assets.xcassets */,
 				3B863EBE1C9AE32900EB439B /* LaunchScreen.storyboard */,
@@ -246,6 +269,7 @@
 				3B863EC01C9AE32900EB439B /* LaunchScreen.storyboard in Resources */,
 				3B863EBD1C9AE32900EB439B /* Assets.xcassets in Resources */,
 				3B863EBB1C9AE32800EB439B /* Main.storyboard in Resources */,
+				3B65C3DD1CAE631400ADEA67 /* ExpandableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,8 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B863EB81C9AE32800EB439B /* ViewController.m in Sources */,
+				3B55F6E01CAA778B009F4ADE /* WritingTestsViewController.m in Sources */,
+				3B65C3D51CAE539400ADEA67 /* ExpandableTableView.m in Sources */,
 				3B863EB51C9AE32800EB439B /* AppDelegate.m in Sources */,
 				3B863EB21C9AE32800EB439B /* main.m in Sources */,
+				3B65C3DB1CAE54A900ADEA67 /* Constants.m in Sources */,
+				3B65C3D81CAE544200ADEA67 /* ExpandableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +526,7 @@
 				3B863EDC1C9AE32900EB439B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B863EDD1C9AE32900EB439B /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +535,7 @@
 				3B863EDF1C9AE32900EB439B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B863EE01C9AE32900EB439B /* Build configuration list for PBXNativeTarget "DemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +544,7 @@
 				3B863EE21C9AE32900EB439B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

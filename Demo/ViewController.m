@@ -8,20 +8,50 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *labelView;
+@property(strong,nonatomic) IBOutlet UILabel *lbl1,*lbl2;
+@property (strong, nonatomic) IBOutlet UITextField *txtstring;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
+    
+// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+- (IBAction)action_Btn1:(id)sender
+{
+    self.lbl1.text = self.txtstring.text;
+}
+- (IBAction)action_Btn2:(id)sender
+{
+    self.lbl2.text = self.txtstring.text;
+}
+
+//- (NSInteger)getNumberOfLines:(NSString *)text andFrame:(CGRect)frame
+//{
+//    NSInteger lines;
+//    
+//    NSInteger length = text.length;
+//    
+//    CGSize s = [text sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(frame.size.width, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+//    
+//    return lines;
+//}
 
 @end
