@@ -12,7 +12,7 @@
 
 @interface ExpandableTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSMutableArray *marraySections,*marrayRows,*marrayParentData,*marrayChildData;
+    NSMutableArray *marrayParentData,*marrayChildData;
     NSIndexPath *indexPathRows;
     BOOL Expand;
 }
@@ -27,15 +27,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    marraySections = [[NSMutableArray alloc] initWithObjects:@"Section", nil];
-    marrayRows = [[NSMutableArray alloc] initWithObjects:@"Rows", nil];
-    
     marrayParentData = [[NSMutableArray alloc] init];
-    marrayChildData = [[NSMutableArray alloc] initWithObjects:@"Child Row", nil];
+    marrayChildData = [[NSMutableArray alloc] init];
+    
+    for (int i = 0 ; i < [self numberOfParentRowsInTableview]; i++)
+    {
+        NSString *strP = [NSString stringWithFormat:@"Parent Header %i",i];
+        NSMutableDictionary *mdict = [[NSMutableDictionary alloc] init];
+        
+        NSInteger rowCount = [self numberOfChildRowsInParent:i];
+        
+        [mdict setValue:strP forKey:@"ParentTitle"];
+        [mdict setValue:[NSNumber numberWithInteger:rowCount]  forKey:@"rowCount"];
+        
+        [marrayParentData addObject:mdict];
+        
+    }
+    
     
     Expand = NO;
     
-    self.headerLabel.text = @"Header";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -49,31 +60,61 @@
 }
 - (IBAction)actionHeaderButton:(id)sender
 {
-    //[self.tableExpandable setEditing:YES animated:YES];
     
-// for reloading section
-//    NSRange range;
-//    range.location = 0;
-//    range.length = 1;
-//    [self.tableExpandable reloadSections:[NSIndexSet indexSetWithIndexesInRange:range] withRowAnimation:UITableViewRowAnimationBottom];
+}
 
-// for reloading rows
-    NSIndexPath *idp = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableExpandable reloadRowsAtIndexPaths:@[idp] withRowAnimation:UITableViewRowAnimationBottom];
+- (NSInteger)numberOfParentRowsInTableview
+{
+    return 2;
+}
+
+- (NSString *)titleForChildRowsInParent:(NSInteger)Parent
+{
+    if (Parent == 0)
+    {
+        marrayChildData = [[NSMutableArray alloc] initWithObjects:@"one", nil];
+        return [marrayChildData objectAtIndex:Parent];
+    }
+    else
+    {
+        marrayChildData = [[NSMutableArray alloc] initWithObjects:@"one",@"two",@"three", nil];
+        return [marrayChildData objectAtIndex:Parent];
+    }
+    
+}
+
+
+- (NSString *)titleForParentRowAtIndex:(NSInteger)index
+{
+    return [[marrayParentData objectAtIndex:index] valueForKey:@"ParentTitle"];
+}
+
+- (NSInteger)numberOfChildRowsInParent:(NSInteger)Parent
+{
+    if (Parent == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return 3;
+    }
+}
+
+- (NSInteger)getNumberOfChildRowsForSection:(NSInteger)section
+{
+    return [[[marrayParentData objectAtIndex:section]valueForKey:@"rowCount"] integerValue];
+    ;
 }
 
 - (void)headerButtonTappedInSection:(UIGestureRecognizer *)section
 {
-    [marrayChildData addObject:@"Expanded Child Row"];
+    NSInteger sectionTag = section.view.tag;
+    NSString *childRow = [NSString stringWithFormat:@"Child Row %lu",(long)sectionTag + 1];
+    [marrayChildData addObject:childRow];
     
-    //[self.tableExpandable reloadRowsAtIndexPaths:ind withRowAnimation:UITableViewRowAnimationBottom];
     
-    NSRange range;
-    range.location = 0;
-    range.length = marrayChildData.count;
-    
-    [self tableView:self.tableExpandable commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPathRows];
-    //[self.tableExpandable reloadSections:[NSIndexSet indexSetWithIndexesInRange:range] withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableExpandable reloadData];
 }
 
 - (UIView *)getViewForHeaderForSection:(NSInteger)section
@@ -86,7 +127,7 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, CGRectGetWidth(viewh.bounds), CGRectGetHeight(viewh.bounds) - 10 )];
     [headerLabel setTextColor:[UIColor whiteColor]];
    
-    headerLabel.text = @"Header";  // pass parent array here [array objectatindex section];
+    headerLabel.text = [self titleForParentRowAtIndex:section];
     
     [viewh addSubview:headerLabel];
     
@@ -103,7 +144,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return marrayParentData.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -112,14 +153,14 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSLog(@"viewForHeaderInSection %ld",(long)section);
     
     return [self getViewForHeaderForSection:section];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     
-    return marrayChildData.count;
+    return [self getNumberOfChildRowsForSection:section];
 }
 
 
@@ -133,7 +174,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.lbl.text = [marrayChildData objectAtIndex:indexPath.row];
+    cell.lbl.text = [self titleForChildRowsInParent:indexPath.row];
     
     
     return cell;
@@ -148,31 +189,10 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        [marrayChildData removeObjectAtIndex:indexPath.row];
-        
-        [self.tableExpandable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else
-    {
-        indexPathRows = indexPath;
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add Title" message:@"Add Title For Row" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            
-            [marrayChildData addObject:textField.text];
-        }];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-        
-        [alert addAction:ok];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    
 }
+
+
 
 /*
 // Override to support rearranging the table view.
