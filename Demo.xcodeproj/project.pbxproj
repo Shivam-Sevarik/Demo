@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3B55F6E01CAA778B009F4ADE /* WritingTestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */; };
+		3B599BF41CB3A501008C1D72 /* ExpandableTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B599BF31CB3A501008C1D72 /* ExpandableTable.m */; };
+		3B599BFA1CB3DE5E008C1D72 /* ExpandableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B599BF81CB3DE5E008C1D72 /* ExpandableTableViewController.m */; };
+		3B599BFB1CB3DE5E008C1D72 /* ExpandableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B599BF91CB3DE5E008C1D72 /* ExpandableTableViewController.xib */; };
 		3B65C3D51CAE539400ADEA67 /* ExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */; };
 		3B65C3D81CAE544200ADEA67 /* ExpandableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3D71CAE544200ADEA67 /* ExpandableCell.m */; };
 		3B65C3DB1CAE54A900ADEA67 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65C3DA1CAE54A900ADEA67 /* Constants.m */; };
@@ -42,6 +45,11 @@
 /* Begin PBXFileReference section */
 		3B55F6DE1CAA778B009F4ADE /* WritingTestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WritingTestsViewController.h; path = ../WritingTestsViewController.h; sourceTree = "<group>"; };
 		3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WritingTestsViewController.m; path = ../WritingTestsViewController.m; sourceTree = "<group>"; };
+		3B599BF21CB3A501008C1D72 /* ExpandableTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableTable.h; sourceTree = "<group>"; };
+		3B599BF31CB3A501008C1D72 /* ExpandableTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableTable.m; sourceTree = "<group>"; };
+		3B599BF71CB3DE5E008C1D72 /* ExpandableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableTableViewController.h; sourceTree = "<group>"; };
+		3B599BF81CB3DE5E008C1D72 /* ExpandableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableTableViewController.m; sourceTree = "<group>"; };
+		3B599BF91CB3DE5E008C1D72 /* ExpandableTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewController.xib; sourceTree = "<group>"; };
 		3B65C3D31CAE539400ADEA67 /* ExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpandableTableView.h; path = ../ExpandableTableView.h; sourceTree = "<group>"; };
 		3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpandableTableView.m; path = ../ExpandableTableView.m; sourceTree = "<group>"; };
 		3B65C3D61CAE544200ADEA67 /* ExpandableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpandableCell.h; path = ../ExpandableCell.h; sourceTree = "<group>"; };
@@ -95,6 +103,9 @@
 		3B863EA41C9AE32800EB439B = {
 			isa = PBXGroup;
 			children = (
+				3B599BF71CB3DE5E008C1D72 /* ExpandableTableViewController.h */,
+				3B599BF81CB3DE5E008C1D72 /* ExpandableTableViewController.m */,
+				3B599BF91CB3DE5E008C1D72 /* ExpandableTableViewController.xib */,
 				3B863EAF1C9AE32800EB439B /* Demo */,
 				3B863EC91C9AE32900EB439B /* DemoTests */,
 				3B863ED41C9AE32900EB439B /* DemoUITests */,
@@ -123,6 +134,8 @@
 				3B55F6DF1CAA778B009F4ADE /* WritingTestsViewController.m */,
 				3B65C3D31CAE539400ADEA67 /* ExpandableTableView.h */,
 				3B65C3D41CAE539400ADEA67 /* ExpandableTableView.m */,
+				3B599BF21CB3A501008C1D72 /* ExpandableTable.h */,
+				3B599BF31CB3A501008C1D72 /* ExpandableTable.m */,
 				3B65C3D61CAE544200ADEA67 /* ExpandableCell.h */,
 				3B65C3D71CAE544200ADEA67 /* ExpandableCell.m */,
 				3B65C3DC1CAE631400ADEA67 /* ExpandableCell.xib */,
@@ -267,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B863EC01C9AE32900EB439B /* LaunchScreen.storyboard in Resources */,
+				3B599BFB1CB3DE5E008C1D72 /* ExpandableTableViewController.xib in Resources */,
 				3B863EBD1C9AE32900EB439B /* Assets.xcassets in Resources */,
 				3B863EBB1C9AE32800EB439B /* Main.storyboard in Resources */,
 				3B65C3DD1CAE631400ADEA67 /* ExpandableCell.xib in Resources */,
@@ -294,12 +308,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B599BF41CB3A501008C1D72 /* ExpandableTable.m in Sources */,
 				3B863EB81C9AE32800EB439B /* ViewController.m in Sources */,
 				3B55F6E01CAA778B009F4ADE /* WritingTestsViewController.m in Sources */,
 				3B65C3D51CAE539400ADEA67 /* ExpandableTableView.m in Sources */,
 				3B863EB51C9AE32800EB439B /* AppDelegate.m in Sources */,
 				3B863EB21C9AE32800EB439B /* main.m in Sources */,
 				3B65C3DB1CAE54A900ADEA67 /* Constants.m in Sources */,
+				3B599BFA1CB3DE5E008C1D72 /* ExpandableTableViewController.m in Sources */,
 				3B65C3D81CAE544200ADEA67 /* ExpandableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

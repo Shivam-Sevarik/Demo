@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "ExpandableTableViewController.h"
 
-@interface ViewController ()<UITextFieldDelegate>
+@interface ViewController ()<UITextFieldDelegate,ExpandableTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *labelView;
 @property(strong,nonatomic) IBOutlet UILabel *lbl1,*lbl2;
 @property (strong, nonatomic) IBOutlet UITextField *txtstring;
@@ -40,7 +41,20 @@
 }
 - (IBAction)action_Btn2:(id)sender
 {
-    self.lbl2.text = self.txtstring.text;
+    
+}
+
+- (NSMutableArray *)getParentRowsData
+{
+    return (NSMutableArray *)@[@"one",@"two"];
+}
+- (NSMutableArray *)getChildRowsDataInParent:(NSInteger)Parent
+{
+    return (NSMutableArray *)@[@"one",@"two",@"three",@"four"];
+}
+- (void)didSelectChildRow:(NSInteger)Child InParent:(NSInteger)Parent
+{
+    NSLog(@"didSelectChildRow = ");
 }
 
 //- (NSInteger)getNumberOfLines:(NSString *)text andFrame:(CGRect)frame

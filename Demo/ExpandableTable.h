@@ -1,20 +1,21 @@
 //
-//  ExpandableTableView.h
+//  ExpandableTable.h
 //  Demo
 //
-//  Created by EcoMail on 01/04/16.
+//  Created by EcoMail on 05/04/16.
 //  Copyright © 2016 6Degreesit. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ExpandableTableView : UITableViewController
+@interface ExpandableTable : NSObject
 
+@property(strong,nonatomic) NSMutableArray *marrayParentData;
+@property(strong,nonatomic) NSMutableArray *marrayChildData;
 
 - (NSMutableArray *)getParentRowsData;
 - (NSMutableArray *)getChildRowsDataInParent:(NSInteger)Parent;
 - (void)didSelectParentAtIndex:(NSInteger)Parent;
 - (void)didSelectChildRow:(NSInteger)Child InParent:(NSInteger)Parent;
-
 
 @end

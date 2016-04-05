@@ -1,29 +1,25 @@
 //
-//  ExpandableTableView.m
+//  ExpandableTableViewController.m
 //  Demo
 //
-//  Created by EcoMail on 01/04/16.
+//  Created by EcoMail on 05/04/16.
 //  Copyright © 2016 6Degreesit. All rights reserved.
 //
 
-#import "ExpandableTableView.h"
+#import "ExpandableTableViewController.h"
 #import "ExpandableCell.h"
-#import "ExpandableTable.h"
 
-@interface ExpandableTableView ()<UITableViewDelegate,UITableViewDataSource>
+@interface ExpandableTableViewController ()
 {
-    NSMutableArray *marrayParentData,*marrayChildData,*marrayTableData,*marrayExpandedSections;
-    NSIndexPath *indexPathRows;
-    BOOL isExpanded;
-    NSInteger expandedSection,currentSection;
+    NSMutableArray *marrayExpandedSections,*marrayTableData;
 }
 @property(strong,nonatomic) IBOutlet UITableView *tableExpandable;
-@property(strong,nonatomic) IBOutlet UIView *headerView;
-@property(strong,nonatomic) IBOutlet UILabel *headerLabel;
-@property(strong,nonatomic) IBOutlet UIImageView *headerArrow;
 @end
 
-@implementation ExpandableTableView
+@implementation ExpandableTableViewController
+@synthesize marrayChildData;
+@synthesize marrayParentData;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,11 +27,7 @@
     marrayTableData = [[NSMutableArray alloc] init];
     marrayExpandedSections = [[NSMutableArray alloc] init];
     
-    
-    marrayParentData = [[NSMutableArray alloc] initWithObjects:@"Parent Header 1",@"Parent Header 2", nil];
-    marrayChildData = [[NSMutableArray alloc] initWithObjects:@"Child Row 1",@"Child Row 2",@"Child Row 3", nil];
-    
-    for (int i = 0 ; i < [[self getParentRowsData] count]; i++)
+    for (int i = 0 ; i < marrayParentData.count; i++)
     {
         NSMutableDictionary *mdict = [[NSMutableDictionary alloc] init];
         
@@ -46,43 +38,22 @@
         [marrayTableData addObject:mdict];
     }
     
-    isExpanded = NO;
-    expandedSection = currentSection = -1;
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)actionHeaderButton:(id)sender
-{
-    
-}
-
-
-
+#pragma Getting TableData
 - (NSMutableArray *)getParentRowsData
 {
-    
     return marrayParentData;
 }
 
-- (NSMutableArray *)getChildRowsDataInParent:(NSInteger)Parent
+-(NSMutableArray *)getChildRowsDataInParent:(NSInteger)Parent
 {
-    if (Parent == 0)
-    {
-        return marrayChildData;
-    }
-    else
-    {
-        NSArray *arr = @[@"Second",@"third"];
-        return (NSMutableArray *)arr;
-    }
-    
+    return marrayChildData;
 }
-
-
 
 - (NSArray *)getChildTitleArrayForParent:(NSInteger)Parent
 {
@@ -99,7 +70,7 @@
 
 - (NSInteger)getNumberOfChildRowsForSection:(NSInteger)section
 {
- if ([marrayExpandedSections containsObject:[NSNumber numberWithInteger:section]])
+    if ([marrayExpandedSections containsObject:[NSNumber numberWithInteger:section]])
     {
         return [[[marrayTableData objectAtIndex:section]valueForKey:@"childData"] count];
     }
@@ -139,11 +110,11 @@
     if ([marrayExpandedSections containsObject:[NSNumber numberWithInteger:sectionTag]])
     {
         [marrayExpandedSections removeObject:[NSNumber numberWithInteger:sectionTag]];
-//        isExpanded = NO;
-//        [UIView animateWithDuration:0.3 animations:^{
-//            
-//            anyview.transform = CGAffineTransformMakeRotation(180 *M_PI / 180.0);
-//        }];
+        //        isExpanded = NO;
+        //        [UIView animateWithDuration:0.3 animations:^{
+        //
+        //            anyview.transform = CGAffineTransformMakeRotation(180 *M_PI / 180.0);
+        //        }];
         //expandedSection = -1;
         //[self.tableExpandable reloadRowsAtIndexPaths:(NSArray *)marrayIndexP withRowAnimation:UITableViewRowAnimationTop];
         //[self.tableExpandable reloadSections:[NSIndexSet indexSetWithIndexesInRange:range] withRowAnimation:UITableViewRowAnimationTop];
@@ -151,7 +122,7 @@
     else
     {
         [marrayExpandedSections addObject:[NSNumber numberWithInteger:sectionTag]];
-//        isExpanded = YES;
+        //        isExpanded = YES;
         //expandedSection = sectionTag;
         //[self.tableExpandable reloadRowsAtIndexPaths:@[indp1] withRowAnimation:UITableViewRowAnimationTop];
         //[self.tableExpandable reloadSections:[NSIndexSet indexSetWithIndexesInRange:range] withRowAnimation:UITableViewRowAnimationBottom];
@@ -175,12 +146,12 @@
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, CGRectGetWidth(viewh.bounds), CGRectGetHeight(viewh.bounds) - 10 )];
     [headerLabel setTextColor:[UIColor whiteColor]];
-   
+    
     headerLabel.text = [self titleForParentRowAtIndex:section];
-
-//    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(viewh.bounds) - 50, 5, 30, 30 )];
-//    [arrow setImage:[UIImage imageNamed:@"Arrow.png"]];
-//    [viewh addSubview:arrow];
+    
+    //    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(viewh.bounds) - 50, 5, 30, 30 )];
+    //    [arrow setImage:[UIImage imageNamed:@"Arrow.png"]];
+    //    [viewh addSubview:arrow];
     
     [viewh addSubview:headerLabel];
     
@@ -217,7 +188,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     ExpandableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (!cell)
@@ -242,13 +213,37 @@
 {
     [self didSelectChildRow:indexPath.row InParent:indexPath.section];
 }
-#pragma mark - UITableView Editing
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
+*/
 
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
 
 /*
 // Override to support rearranging the table view.
@@ -261,6 +256,22 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
+}
+*/
+
+/*
+#pragma mark - Table view delegate
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
 
